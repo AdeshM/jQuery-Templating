@@ -1,0 +1,42 @@
+	  <div class="row vertical-center-row">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="row ">
+                <div class="col-xs-12 col-md-12 col-lg-6 col-lg-offset-3">
+
+				  
+				  <div class="row ">
+					<div class="col-xs-12 col-md-12 col-lg-6 col-lg-offset-3 text-center">
+						<label for="clock-local-x">Local Date and Time</label><br>
+						<span id="clock" class="clock-local">Jul 12, 2015 01:15:05</span>
+					</div>
+				  </div>
+
+
+				</div>
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+	var getDateTime	= (function() {
+		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var dt = new Date();
+		var current_date = monthNames[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
+		var th = dt.getHours();
+		var tm = dt.getMinutes();
+		var am_pm = th >= 12 ? 'PM' : 'AM';
+		th = th % 12;
+		th = th ? th : 12;
+		tm = tm < 10 ? '0'+ tm : tm;
+		var current_time = th + ':' + tm + ' ' + am_pm;
+
+		// alert(current_date + ' ' + current_time);
+		return current_date + ' ' + current_time;	// dt.toDateString();
+	});
+
+	$('#clock.clock-local').html(getDateTime());
+
+	$('#clock.clock-local').on('click', function(){
+		$(this).html(getDateTime());
+	})
+	</script>

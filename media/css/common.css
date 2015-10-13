@@ -1,0 +1,24 @@
+.navbar-brand	{
+	padding: 0 25px;
+}
+
+html, body, .container {
+    height: 90%;
+}
+.panel-body.vertical-container {
+	width: 100%;
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Cosmatic as given */
+.panel.block-weather	{border-color: black !important;}
+.panel.block-clocks-1	{border-color: green !important;}
+.panel.block-clocks-2	{border-color: blue !important;}
+
+
+#clock.clock-local	{font: bold 20px arial;}

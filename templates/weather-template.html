@@ -1,0 +1,71 @@
+	  <div class="row vertical-center-row">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+            <div class="row ">
+                <div class="col-xs-12 col-md-12 col-lg-6 col-lg-offset-3">
+				
+				
+				  <form data-toggle="validator" role="form" name="formGetInfo" id="formGetInfo">
+					<div class="form-group">
+						<label for="selectLocation">Weather</label>
+						<select class="form-control" name="selectLocation" id="selectLocation" data-error="Grrr, choose your location..." required>
+							<option value="">Browse for Location</option>
+							<option value="New York">New York</option>
+							<option value="London">London</option>
+							<option value="Paris">Paris</option>
+						</select>
+						<div class="help-block with-errors"></div>
+					</div>
+					<button type="submit" class="btn btn-primary" id="btnGetInfo">Go</button>
+				  </form>
+
+				  <hr>
+
+				  <div class="row">
+					<div class="col-xs-12 col-md-12 col-lg-12 text-center">
+						<label id="lblSpeed"></label>
+						<label id="lblDeg"></label>
+					</div>
+				  </div>
+
+
+
+				</div>
+            </div>
+        </div>
+    </div>
+
+
+	<script type="text/javascript">
+
+	$('#formGetInfo').validator().on('submit', function (e) {
+		if (e.isDefaultPrevented()) {
+			// Handle Custom Error
+
+		} else {
+
+		e.preventDefault();
+		var slocation = $('#selectLocation').val();
+
+		var weatherApiUrl = 'http://api.openweathermap.org/data/2.5/weather';
+		$.ajax({
+			url	: weatherApiUrl + '?q=' + slocation + '&appid=bd82977b86bf27fb59a04b61b657fb6f',
+			type : 'GET',
+			cache : false,
+			success: function(html){
+				setWindInfo(html['wind']);
+			},
+			error: function(html){
+				alert('Unknown Error Occured!');
+			}
+			
+		});
+		}
+	});
+
+	var setWindInfo	= (function(windInfo) {
+		// console.log(windInfo);
+		$('#lblSpeed').html('Speed: ' + windInfo['speed']);
+		$('#lblDeg').html('Deg: ' + windInfo['deg']);
+	});
+	
+	</script>
